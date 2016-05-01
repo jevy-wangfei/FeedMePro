@@ -71,7 +71,7 @@
 		7B4790A41C9E2D4C0065496A /* InitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitTableViewCell.swift; sourceTree = "<group>"; };
 		7B4790AA1C9E348B0065496A /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		7B5C378B1CD616AA0083D8CD /* Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
-		7B5C378D1CD617110083D8CD /* FeedMeIOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FeedMeIOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		7B5C378D1CD617110083D8CD /* FeedMePro-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FeedMePro-Bridging-Header.h"; sourceTree = "<group>"; };
 		7B78876F1C9E56030064ECB6 /* InitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitTableViewController.swift; sourceTree = "<group>"; };
 		7BAE2F261CA4F95100A1B420 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7BB04D6F1CA5EF8700E1988E /* FeedMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedMe.swift; sourceTree = "<group>"; };
@@ -129,6 +129,7 @@
 				7BEAF4CA1CB9335A00F1568B /* ViewControllerExtension.swift */,
 				7BB04D6F1CA5EF8700E1988E /* FeedMe.swift */,
 				7B07F2A91CD1CF080028B6C8 /* Order.swift */,
+				7B5C378D1CD617110083D8CD /* FeedMePro-Bridging-Header.h */,
 				7B5C378B1CD616AA0083D8CD /* Security.swift */,
 				7B1885971C9CF95900B99499 /* AppDelegate.swift */,
 				7B07F2AB1CD478810028B6C8 /* DishLog.swift */,
@@ -140,7 +141,6 @@
 				7B4790AA1C9E348B0065496A /* Dish.swift */,
 				7B4790A41C9E2D4C0065496A /* InitTableViewCell.swift */,
 				7B07F2A71CD1B6C80028B6C8 /* OrderProcessCell.swift */,
-				7B5C378D1CD617110083D8CD /* FeedMeIOS-Bridging-Header.h */,
 				7B78876F1C9E56030064ECB6 /* InitTableViewController.swift */,
 				7B07F2A31CD1B6200028B6C8 /* OrderProcessController.swift */,
 				7B1885A51C9CF95900B99499 /* Info.plist */,
@@ -461,6 +461,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FeedMe.FeedMePro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Jason/git/FeedMePro/FeedMePro/FeedMePro-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -472,6 +473,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FeedMe.FeedMePro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Jason/git/FeedMePro/FeedMePro/FeedMePro-Bridging-Header.h";
 			};
 			name = Release;
 		};
