@@ -12,6 +12,7 @@ struct FeedMe {
     
     struct Path {
         static let TEXT_HOST = "http://ec2-52-27-149-51.us-west-2.compute.amazonaws.com:8080/"
+//        static let TEXT_HOST = "http://localhost:8080/"
         static let PICTURE_HOST = "http://ec2-52-27-149-51.us-west-2.compute.amazonaws.com:8080/"
     }
     
@@ -24,7 +25,11 @@ struct FeedMe {
         static var dishes: [Int: Dish]!
         
     }
-        
+    static var transColor4 = UIColor(red: 255/225, green: 255/255, blue: 255/255, alpha: 0.4)
+    static var transColor7 = UIColor(red: 255/225, green: 255/255, blue: 255/255, alpha: 0.7)
+    static var redColor = UIColor(red: 194/255, green: 45/255, blue: 36/255, alpha: 1)
+    static var grayColor = UIColor(red: 153/225, green: 153/255, blue: 153/255, alpha: 1)
+    
 }
 
 

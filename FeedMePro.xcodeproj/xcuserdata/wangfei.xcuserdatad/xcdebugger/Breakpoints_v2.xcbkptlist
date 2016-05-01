@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FeedMePro/Dish.swift"
@@ -17,38 +17,6 @@
             endingLineNumber = "13"
             landmarkName = "Dish"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FeedMePro.Dish.ID.setter : Swift.Int"
-                  moduleName = "FeedMePro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangfei/XCode/FeedMePro/FeedMePro/Dish.swift"
-                  timestampString = "480928501.064946"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "12">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FeedMePro.Dish.ID.materializeForSet : Swift.Int"
-                  moduleName = "FeedMePro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangfei/XCode/FeedMePro/FeedMePro/Dish.swift"
-                  timestampString = "480928501.065369"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
