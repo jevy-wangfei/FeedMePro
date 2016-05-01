@@ -1,127 +1,68 @@
 //
-//  InitTableViewController.swift
+//  OrderProcessController.swift
 //  FeedMePro
 //
-//  Created by jevy on 20/03/2016.
+//  Created by jevy on 28/04/2016.
 //  Copyright © 2016 jevy.wf. All rights reserved.
 //
 
-import UIKit
+import  UIKit
 
-class InitTableViewController: UITableViewController {
+class OrderProcessController: UITableViewController {
     
+    
+    @IBOutlet weak var OrderSegement: UISegmentedControl!
+    
+    
+    @IBOutlet weak var OrderList: UITableView!
+    
+    var activeOrders = [Order]()
+    var finishedOrders = [Order]()
+    var displayOrders = [Order]()
+    
+    @IBAction func OrderSegementAction(sender: UISegmentedControl) {
+        
+        switch OrderSegement.selectedSegmentIndex
+        {
+        case 0:
+            displayActiveOrders()
+        case 1:
+            displayFinishedOrders()
+        default:
+            break; 
+        }
+    }
     var staple = [Dish]()
     var soup = [Dish]()
     var dessert = [Dish]()
     var drinks = [Dish]()
     var others = [Dish]()
     
-//    @IBAction func stockDownUp(sender: UIButton) {
-//        if ( sender.titleLabel?.text == "Disable"){
-//            sender.setTitle("Active", forState: UIControlState.Normal)
-//        }
-//    }
+    //    @IBAction func stockDownUp(sender: UIButton) {
+    //        if ( sender.titleLabel?.text == "Disable"){
+    //            sender.setTitle("Active", forState: UIControlState.Normal)
+    //        }
+    //    }
     @IBAction func stockDownUp(sender: UIButton) {
         if ( sender.titleLabel?.text == "On Stock"){
             offStock(sender)
-            FeedMe.Variable.dishes[sender.tag]?.status = 0
         }else{
-           onStock(sender)
-            FeedMe.Variable.dishes[sender.tag]?.status = 1
+            onStock(sender)
         }
         
     }
     
     func offStock(sender: UIButton){
-        sender.setTitle("Out Stock", forState: UIControlState.Normal)
-     
-        sender.layer.backgroundColor = FeedMe.grayColor.CGColor
-    }
-    
-//    @IBAction func initDishes(sender: UIBarButtonItem) {
-//        let host = FeedMe.Path.TEXT_HOST+"restaurant/refreshMenu/?dishlog=" + getDishLog()
-//        print(host)
-//        let url = NSURL(string: host)
-//        
-//        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {
-//            (myData, response, error) in
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                if myData != nil {
-//                    self.initSuccess(myData!)
-//                }
-//            })
-//        }
-//
-//        task.resume()
-//
-//    }
-
-    @IBAction func initDishes(sender: UIButton) {
-                let host = FeedMe.Path.TEXT_HOST+"restaurant/refreshMenu/?dishlog=" + getDishLog()
-                print(host)
-                let url = NSURL(string: host)
-        
-                let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {
-                    (myData, response, error) in
-        
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if myData != nil {
-                            self.initSuccess(myData!)
-                        }
-                    })
-                }
-        
-                task.resume()
-        
-    }
-    func initSuccess(data:NSData){
-        print(data)
-    }
-    func getDishLog()->String{
-        
-        var dishLogs = [DishLog]()
-        
-        let today = NSDate().dateByAddingTimeInterval(0)
-        
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone(name: "UTC")
-        dateFormatter.dateFormat = "yyyy-MM-dd";
-        
-        let dateToPrint = dateFormatter.stringFromDate(today)
-        
-        let dateFormatter2 = NSDateFormatter()
-        dateFormatter2.timeZone = NSTimeZone(name: "UTC")
-        dateFormatter2.dateFormat = "yyyy-MM-dd"
-        let currentDate = dateFormatter2.dateFromString(dateToPrint)
-      
-        
-        for everyDish in FeedMe.Variable.dishes{
-            let dish = everyDish.1
-            let dishLog = DishLog(ID: dish.ID, shopID: dish.shopID,status: dish.status,dat: currentDate!)
-            dishLogs.append(dishLog!)
-        }
-        
-        do{
-        
-        let json =  try NSJSONSerialization.dataWithJSONObject(dishLogs, options: NSJSONWritingOptions.PrettyPrinted)
-        
-         return NSString(data: json, encoding: NSUTF8StringEncoding) as! String;
-        
-        }catch{
-            print(error)
-        }
-        return ""
-        
+        sender.setTitle("Out Of Stock", forState: UIControlState.Normal)
+        sender.layer.backgroundColor = UIColor(red:153/255,green:153/255,blue:153/255, alpha: 1.0).CGColor
     }
     
     func onStock(sender: UIButton){
         sender.setTitle("On Stock", forState: UIControlState.Normal)
-        sender.layer.backgroundColor = FeedMe.redColor.CGColor
+        sender.layer.backgroundColor = UIColor(red:254/255, green:169/255, blue:68/255, alpha: 1.0).CGColor
     }
-
-
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,17 +73,9 @@ class InitTableViewController: UITableViewController {
         self.setBackground(self)
         self.setBar(self)
         
-        
-        
-//        var logButton : UIBarButtonItem = UIBarButtonItem(title: "RigthButtonTitle", style: UIBarButtonItemStyle.Plain, target: self, action: self.initDishes())
-//  
-//        self.navigationItem.rightBarButtonItem = logButton
-        
-        
-        
         loadAllDishes(FeedMe.Path.TEXT_HOST + "dishes/query/?shopId=18")
-            //+ String(FeedMe.Variable.restaurantID!))
-//        loadAllDishes(FeedMe.Path.TEXT_HOST + "restaurant/checkin/?restaurantId=18")
+        //+ String(FeedMe.Variable.restaurantID!))
+        //        loadAllDishes(FeedMe.Path.TEXT_HOST + "restaurant/checkin/?restaurantId=18")
         
     }
     
@@ -180,12 +113,12 @@ class InitTableViewController: UITableViewController {
                     let discount = json[index]["discount"] as?Int
                     let flavor = json[index]["flavor"] as?String
                     let sold = json[index]["sold"] as?Int
-//                    let available = json[index]["available"] as? Bool
-//                    print("Avaliable: \(available)");
+                    //                    let available = json[index]["available"] as? Bool
+                    //                    print("Avaliable: \(available)");
                     
                     var photo: UIImage?
                     
-                    var dish = Dish(ID: ID, shopID: shopID, type: type, name: name, description: description, photo: photo, ingredient: ingredient, price: price, discount: discount, flavor: flavor, sold: sold, status: 1)!
+                    var dish = Dish(ID: ID, shopID: shopID, type: type, name: name, description: description, photo: photo, ingredient: ingredient, price: price, discount: discount, flavor: flavor, sold: sold)!
                     
                     // load image:
                     let photoName = json[index]["photo"] as?String
@@ -245,19 +178,19 @@ class InitTableViewController: UITableViewController {
         })
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 5
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
@@ -276,7 +209,7 @@ class InitTableViewController: UITableViewController {
             return 0
         }
     }
-
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
@@ -308,18 +241,16 @@ class InitTableViewController: UITableViewController {
         cell.dishImg.layer.cornerRadius=10.0
         cell.dishImg.layer.borderWidth = 1.0
         cell.dishImg.clipsToBounds = true
-
-        var dishAvailable = "On Stock"
         
-        if(dish.status == 0){
-            dishAvailable = "Out Stock"
-        }
-        cell.offStock.setTitle(dishAvailable, forState: UIControlState.Normal)
+        //        var dishAvailable:String = ""
+        //        if(dish.state == true){
+        //
+        //        }
+        cell.offStock.setTitle(dish.type, forState: UIControlState.Normal)
         cell.offStock.layer.cornerRadius = 10.0
         cell.offStock.layer.borderWidth = 2.0
         cell.offStock.layer.borderColor = UIColor(white: 1.0, alpha: 1.0).CGColor
         cell.offStock.clipsToBounds = true;
-        cell.offStock.tag = dish.ID
         
         if ((indexPath.row)%2 == 0){
             cell.backgroundColor = FeedMe.transColor4
@@ -331,7 +262,7 @@ class InitTableViewController: UITableViewController {
         
         return cell
     }
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
         case 0:
@@ -367,50 +298,59 @@ class InitTableViewController: UITableViewController {
     }
     
     
-
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+     if editingStyle == .Delete {
+     // Delete the row from the data source
+     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+     } else if editingStyle == .Insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+    func displayActiveOrders(){
+        self.displayOrders = activeOrders
     }
-    */
+    
+    func displayFinishedOrders(){
+        self.displayOrders = finishedOrders
+    }
 
 }
