@@ -8,21 +8,29 @@
 
 import UIKit
 
-class DishLog {
+class DishLog : EVObject {
     
     // MARK: Properties
-    var ID: Int
-    var shopID: Int?
-    var status: Int?
+    var dishId: Int
+    var restaurantId: Int?
+    var available: Int?
     var dat: NSDate
     
     
     // MARK: Initialization
     init?(ID: Int, shopID: Int?, status: Int?, dat:NSDate) {
         // Initialize stored properties.
-        self.ID = ID
-        self.status = status
+        self.dishId = ID
+        self.available = status
         self.dat = dat
+        self.restaurantId = shopID
+    }
+    
+    required init() {
+        self.dishId = -1
+        self.dat = NSDate()
+        self.restaurantId = -1
+        
     }
     
 }

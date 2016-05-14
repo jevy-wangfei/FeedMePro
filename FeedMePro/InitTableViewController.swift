@@ -56,31 +56,10 @@ class InitTableViewController: UITableViewController {
 //        task.resume()
 //
 //    }
-
-    @IBAction func initDishes(sender: UIButton) {
-                let host = FeedMe.Path.TEXT_HOST+"restaurant/refreshMenu/?dishlog=" + getDishLog()
-                print(host)
-                let url = NSURL(string: host)
-        
-                let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {
-                    (myData, response, error) in
-        
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if myData != nil {
-                            self.initSuccess(myData!)
-                        }
-                    })
-                }
-        
-                task.resume()
-        
-    }
-    func initSuccess(data:NSData){
-        print(data)
-    }
+    
     func getDishLog()->String{
         
-        var dishLogs = [DishLog]()
+        var dishLogs: String = "["
         
         let today = NSDate().dateByAddingTimeInterval(0)
         
@@ -95,26 +74,67 @@ class InitTableViewController: UITableViewController {
         dateFormatter2.timeZone = NSTimeZone(name: "UTC")
         dateFormatter2.dateFormat = "yyyy-MM-dd"
         let currentDate = dateFormatter2.dateFromString(dateToPrint)
-      
+        
         
         for everyDish in FeedMe.Variable.dishes{
             let dish = everyDish.1
             let dishLog = DishLog(ID: dish.ID, shopID: dish.shopID,status: dish.status,dat: currentDate!)
-            dishLogs.append(dishLog!)
+            dishLogs = dishLogs + (dishLog?.toJsonString())!+","
         }
         
-        do{
+        dishLogs = dishLogs + "]"
         
-        let json =  try NSJSONSerialization.dataWithJSONObject(dishLogs, options: NSJSONWritingOptions.PrettyPrinted)
-        
-         return NSString(data: json, encoding: NSUTF8StringEncoding) as! String;
-        
-        }catch{
-            print(error)
-        }
-        return ""
+        //        do{
+        //
+        //        let json =  try NSJSONSerialization.dataWithJSONObject(dishLogs, options: NSJSONWritingOptions.PrettyPrinted)
+        //
+        //         return NSString(data: json, encoding: NSUTF8StringEncoding) as! String;
+        //
+        //        }catch{
+        //            print(error)
+        //        }
+//        NSLog(dishLogs)
+        return dishLogs
         
     }
+
+    @IBAction func initDishes(sender: UIButton) {
+        
+        let url = FeedMe.Path.TEXT_HOST + "restaurant/refreshMenu"
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.HTTPMethod = "POST"
+      
+        request.HTTPBody = getDishLog().dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // NSLog("reuqest body: %@", request.HTTPBody!)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+            guard error == nil && data != nil else {
+                // check for fundamental networking error
+                NSLog("error: %@", error!)
+                FeedMeAlert.alertSignUpFailure(self, message: "Unknown error")
+                return
+            }
+            
+            if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
+                // check for http errors
+                NSLog("statusCode should be 200, but is: %@", httpStatus.statusCode)
+                NSLog("response: %@", response!)
+                FeedMeAlert.alertSignUpFailure(self, message: "Unknown error")
+                return
+            }
+            
+            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            NSLog("response string: %@", responseString!)
+        }
+            task.resume()
+        
+    }
+        
+    func initSuccess(data:NSData){
+        print(data)
+    }
+   
     
     func onStock(sender: UIButton){
         sender.setTitle("On Stock", forState: UIControlState.Normal)
@@ -138,9 +158,25 @@ class InitTableViewController: UITableViewController {
 //  
 //        self.navigationItem.rightBarButtonItem = logButton
         
+        //Test only
+        FeedMe.Variable.restaurantID = 18
+
+        if(FeedMe.Variable.restaurantID != nil){
+            
+                        NSLog("RestaurantID = \(FeedMe.Variable.restaurantID!)");
+            NSLog("URL: \(FeedMe.Path.TEXT_HOST)dishes/query/?shopId=\(FeedMe.Variable.restaurantID!)");
+            loadAllDishes(FeedMe.Path.TEXT_HOST + "dishes/query/?shopId=\(FeedMe.Variable.restaurantID!)")
+            //+ String(FeedMe.Variable.restaurantID!))
+            //        loadAllDishes(FeedMe.Path.TEXT_HOST + "restaurant/checkin/?restaurantId=18")
+        }else{
+            NSLog("Restaurant ID is null, go to login view")
+            //            let nextView = self.storyboard?.instantiateViewControllerWithIdentifier("login")
+            //            self.presentViewController(nextView!, animated: true, completion:nil)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+
         
-        
-        loadAllDishes(FeedMe.Path.TEXT_HOST + "dishes/query/?shopId=18")
+//        loadAllDishes(FeedMe.Path.TEXT_HOST + "dishes/query/?shopId=18")
             //+ String(FeedMe.Variable.restaurantID!))
 //        loadAllDishes(FeedMe.Path.TEXT_HOST + "restaurant/checkin/?restaurantId=18")
         

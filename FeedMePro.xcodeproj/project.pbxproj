@@ -27,6 +27,13 @@
 		7B7887701C9E56030064ECB6 /* InitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B78876F1C9E56030064ECB6 /* InitTableViewController.swift */; };
 		7BAE2F271CA4F95100A1B420 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BAE2F261CA4F95100A1B420 /* background.png */; };
 		7BB04D701CA5EF8700E1988E /* FeedMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB04D6F1CA5EF8700E1988E /* FeedMe.swift */; };
+		7BCB5E8C1CDDEDCA00AE28D4 /* EVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB5E861CDDEDCA00AE28D4 /* EVExtensions.swift */; };
+		7BCB5E8D1CDDEDCA00AE28D4 /* EVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB5E871CDDEDCA00AE28D4 /* EVObject.swift */; };
+		7BCB5E8E1CDDEDCA00AE28D4 /* EVObjectDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB5E881CDDEDCA00AE28D4 /* EVObjectDescription.swift */; };
+		7BCB5E8F1CDDEDCA00AE28D4 /* EVReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB5E891CDDEDCA00AE28D4 /* EVReflection.swift */; };
+		7BCB5E901CDDEDCA00AE28D4 /* EVReflection_License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7BCB5E8A1CDDEDCA00AE28D4 /* EVReflection_License.txt */; };
+		7BCB5E911CDDEDCA00AE28D4 /* EVWorkaroundHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB5E8B1CDDEDCA00AE28D4 /* EVWorkaroundHelpers.swift */; };
+		7BDDC7D61CDF7A620089992D /* FeedMeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDDC7D51CDF7A620089992D /* FeedMeAlert.swift */; };
 		7BEAF4CB1CB9335A00F1568B /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEAF4CA1CB9335A00F1568B /* ViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +82,13 @@
 		7B78876F1C9E56030064ECB6 /* InitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitTableViewController.swift; sourceTree = "<group>"; };
 		7BAE2F261CA4F95100A1B420 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7BB04D6F1CA5EF8700E1988E /* FeedMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedMe.swift; sourceTree = "<group>"; };
+		7BCB5E861CDDEDCA00AE28D4 /* EVExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVExtensions.swift; sourceTree = "<group>"; };
+		7BCB5E871CDDEDCA00AE28D4 /* EVObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVObject.swift; sourceTree = "<group>"; };
+		7BCB5E881CDDEDCA00AE28D4 /* EVObjectDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVObjectDescription.swift; sourceTree = "<group>"; };
+		7BCB5E891CDDEDCA00AE28D4 /* EVReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVReflection.swift; sourceTree = "<group>"; };
+		7BCB5E8A1CDDEDCA00AE28D4 /* EVReflection_License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EVReflection_License.txt; sourceTree = "<group>"; };
+		7BCB5E8B1CDDEDCA00AE28D4 /* EVWorkaroundHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVWorkaroundHelpers.swift; sourceTree = "<group>"; };
+		7BDDC7D51CDF7A620089992D /* FeedMeAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedMeAlert.swift; sourceTree = "<group>"; };
 		7BEAF4CA1CB9335A00F1568B /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +140,7 @@
 		7B1885961C9CF95900B99499 /* FeedMePro */ = {
 			isa = PBXGroup;
 			children = (
+				7BCB5E851CDDEDCA00AE28D4 /* EV */,
 				7BEAF4CA1CB9335A00F1568B /* ViewControllerExtension.swift */,
 				7BB04D6F1CA5EF8700E1988E /* FeedMe.swift */,
 				7B07F2A91CD1CF080028B6C8 /* Order.swift */,
@@ -147,6 +162,7 @@
 				7BAE2F261CA4F95100A1B420 /* background.png */,
 				7B1885C71C9D116700B99499 /* LoginViewControler.swift */,
 				7B4790A01C9E2B090065496A /* DishesManageViewController.swift */,
+				7BDDC7D51CDF7A620089992D /* FeedMeAlert.swift */,
 			);
 			path = FeedMePro;
 			sourceTree = "<group>";
@@ -167,6 +183,19 @@
 				7B1885BB1C9CF95900B99499 /* Info.plist */,
 			);
 			path = FeedMeProUITests;
+			sourceTree = "<group>";
+		};
+		7BCB5E851CDDEDCA00AE28D4 /* EV */ = {
+			isa = PBXGroup;
+			children = (
+				7BCB5E861CDDEDCA00AE28D4 /* EVExtensions.swift */,
+				7BCB5E871CDDEDCA00AE28D4 /* EVObject.swift */,
+				7BCB5E881CDDEDCA00AE28D4 /* EVObjectDescription.swift */,
+				7BCB5E891CDDEDCA00AE28D4 /* EVReflection.swift */,
+				7BCB5E8A1CDDEDCA00AE28D4 /* EVReflection_License.txt */,
+				7BCB5E8B1CDDEDCA00AE28D4 /* EVWorkaroundHelpers.swift */,
+			);
+			path = EV;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +304,7 @@
 			files = (
 				7B1885A41C9CF95900B99499 /* LaunchScreen.storyboard in Resources */,
 				7BAE2F271CA4F95100A1B420 /* background.png in Resources */,
+				7BCB5E901CDDEDCA00AE28D4 /* EVReflection_License.txt in Resources */,
 				7B1885A11C9CF95900B99499 /* Assets.xcassets in Resources */,
 				7B47909F1C9E1DED0065496A /* Main.storyboard in Resources */,
 			);
@@ -301,14 +331,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDDC7D61CDF7A620089992D /* FeedMeAlert.swift in Sources */,
 				7B7887701C9E56030064ECB6 /* InitTableViewController.swift in Sources */,
+				7BCB5E8D1CDDEDCA00AE28D4 /* EVObject.swift in Sources */,
 				7B4790A11C9E2B090065496A /* DishesManageViewController.swift in Sources */,
 				7B18859C1C9CF95900B99499 /* HistoryViewController.swift in Sources */,
 				7B07F2A41CD1B6200028B6C8 /* OrderProcessController.swift in Sources */,
+				7BCB5E8F1CDDEDCA00AE28D4 /* EVReflection.swift in Sources */,
 				7B1885981C9CF95900B99499 /* AppDelegate.swift in Sources */,
 				7B18859A1C9CF95900B99499 /* MainViewController.swift in Sources */,
 				7B07F2AC1CD478810028B6C8 /* DishLog.swift in Sources */,
+				7BCB5E8E1CDDEDCA00AE28D4 /* EVObjectDescription.swift in Sources */,
+				7BCB5E911CDDEDCA00AE28D4 /* EVWorkaroundHelpers.swift in Sources */,
 				7BB04D701CA5EF8700E1988E /* FeedMe.swift in Sources */,
+				7BCB5E8C1CDDEDCA00AE28D4 /* EVExtensions.swift in Sources */,
 				7B5C378C1CD616AA0083D8CD /* Security.swift in Sources */,
 				7B4790AB1C9E348B0065496A /* Dish.swift in Sources */,
 				7B07F2A81CD1B6C80028B6C8 /* OrderProcessCell.swift in Sources */,

@@ -15,6 +15,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setViewBar(self)
+        self.setViewBackground(self)
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -82,19 +85,27 @@ class LoginViewController: UIViewController {
                 
                 do {
                     json = try NSJSONSerialization.JSONObjectWithData(myData!, options: .AllowFragments) as! NSDictionary
-                    
-                    if let statusInfo = json["statusInfo"] as? String {
-                        if statusInfo == "Y" {
+                    print(json)
+                    if let _ = json["id"] as? Int {
+                        
                             NSLog("Login Success!")
-                            self.loginStatus = true
+//                            self.loginStatus = true
                             FeedMe.Variable.userInLoginState = true
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        } else {
-                            NSLog("Login Fail!")
-                            self.displayMessage("Incorrect email address or password!")
-                        }
+                            
+                            FeedMe.Variable.restaurantID=json["id"] as? Int
+                            FeedMe.Variable.restaurantName=json["name"] as? String
+                            FeedMe.Variable.userInLoginState=true
+//                            self.dismissViewControllerAnimated(true, completion: nil)
+                            let nextView = self.storyboard?.instantiateViewControllerWithIdentifier("init")
+                            self.presentViewController(nextView!, animated: true, completion:nil)
+                        
+                    }else{
+                        NSLog("Login Fail!+++")
+                        self.displayMessage("Incorrect email address or password!")
                     }
                 } catch _ {
+                    self.displayMessage("Incorrect email address or password!")
+                    print(error)
                     
                 }
                 
