@@ -59,7 +59,7 @@ class InitTableViewController: UITableViewController {
     
     func getDishLog()->String{
         
-        var dishLogs: String = "["
+        var dishLogs = [DishLog]()
         
         let today = NSDate().dateByAddingTimeInterval(0)
         
@@ -79,10 +79,10 @@ class InitTableViewController: UITableViewController {
         for everyDish in FeedMe.Variable.dishes{
             let dish = everyDish.1
             let dishLog = DishLog(ID: dish.ID, shopID: dish.shopID,status: dish.status,dat: currentDate!)
-            dishLogs = dishLogs + (dishLog?.toJsonString())!+","
+            dishLogs.append(dishLog!)
         }
         
-        dishLogs = dishLogs + "]"
+        return dishLogs.toJsonString()
         
         //        do{
         //
@@ -94,17 +94,21 @@ class InitTableViewController: UITableViewController {
         //            print(error)
         //        }
 //        NSLog(dishLogs)
-        return dishLogs
         
     }
 
     @IBAction func initDishes(sender: UIButton) {
+//        print("DishLog: \n"+getDishLog());
+        //Transfer to order main view
+        let nextView = self.storyboard?.instantiateViewControllerWithIdentifier("main_order")
+        self.presentViewController(nextView!, animated: true, completion:nil)
         
-        let url = FeedMe.Path.TEXT_HOST + "restaurant/refreshMenu"
+        let url = FeedMe.Path.TEXT_HOST + "restaurants/refreshMenu"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         request.HTTPMethod = "POST"
       
         request.HTTPBody = getDishLog().dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+       
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // NSLog("reuqest body: %@", request.HTTPBody!)
@@ -118,16 +122,18 @@ class InitTableViewController: UITableViewController {
             
             if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
                 // check for http errors
-                NSLog("statusCode should be 200, but is: %@", httpStatus.statusCode)
+                NSLog("statusCode should be 200, but is: %@", String(httpStatus.statusCode))
                 NSLog("response: %@", response!)
                 FeedMeAlert.alertSignUpFailure(self, message: "Unknown error")
-                return
+                // return
             }
             
             let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             NSLog("response string: %@", responseString!)
+            
         }
-            task.resume()
+        task.resume()
+       
         
     }
         
@@ -164,8 +170,8 @@ class InitTableViewController: UITableViewController {
         if(FeedMe.Variable.restaurantID != nil){
             
                         NSLog("RestaurantID = \(FeedMe.Variable.restaurantID!)");
-            NSLog("URL: \(FeedMe.Path.TEXT_HOST)dishes/query/?shopId=\(FeedMe.Variable.restaurantID!)");
-            loadAllDishes(FeedMe.Path.TEXT_HOST + "dishes/query/?shopId=\(FeedMe.Variable.restaurantID!)")
+            NSLog("URL: \(FeedMe.Path.TEXT_HOST)dishes/queryAll/?shopId=\(FeedMe.Variable.restaurantID!)");
+            loadAllDishes(FeedMe.Path.TEXT_HOST + "dishes/queryAll/?shopId=\(FeedMe.Variable.restaurantID!)")
             //+ String(FeedMe.Variable.restaurantID!))
             //        loadAllDishes(FeedMe.Path.TEXT_HOST + "restaurant/checkin/?restaurantId=18")
         }else{
