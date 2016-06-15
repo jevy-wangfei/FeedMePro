@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SLi-Ao-H2D">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -63,7 +62,7 @@
         <!--Order Processing-->
         <scene sceneID="2Kh-dh-K50">
             <objects>
-                <viewController id="Jg6-vr-5kT" customClass="OrderProcessController" customModule="FeedMePro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Jg6-vr-5kT" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3QR-y9-RKp"/>
                         <viewControllerLayoutGuide type="bottom" id="xwM-4q-gDa"/>
@@ -72,23 +71,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ui3-HI-p4E">
-                                <rect key="frame" x="20" y="72" width="560" height="29"/>
-                                <segments>
-                                    <segment title="Active Order"/>
-                                    <segment title="Finished Order"/>
-                                </segments>
-                                <color key="tintColor" red="0.94132612179487185" green="0.0" blue="0.035232935668394028" alpha="0.70317887931034484" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="OrderSegementAction:" destination="Jg6-vr-5kT" eventType="valueChanged" id="Rnu-PI-6Ce"/>
-                                </connections>
-                            </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="171" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHL-hE-P6D">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="160" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AHL-hE-P6D">
                                 <rect key="frame" x="20" y="108" width="560" height="435"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="171" id="XAz-TL-EWe" customClass="OrderProcessCell" customModule="FeedMePro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="171"/>
+                                        <rect key="frame" x="0.0" y="92" width="560" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XAz-TL-EWe" id="ccm-Co-jwQ">
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="170.5"/>
@@ -239,25 +227,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ui3-HI-p4E" firstAttribute="width" secondItem="2Gy-HA-EDc" secondAttribute="width" constant="-40" id="4eg-pr-oNA"/>
-                            <constraint firstItem="AHL-hE-P6D" firstAttribute="top" secondItem="Ui3-HI-p4E" secondAttribute="bottom" constant="8" symbolic="YES" id="6Vo-WN-yXP"/>
-                            <constraint firstItem="AHL-hE-P6D" firstAttribute="trailing" secondItem="Ui3-HI-p4E" secondAttribute="trailing" id="7wm-Av-D9N"/>
                             <constraint firstItem="xwM-4q-gDa" firstAttribute="top" secondItem="AHL-hE-P6D" secondAttribute="bottom" constant="8" symbolic="YES" id="Lwv-tk-p2t"/>
-                            <constraint firstItem="Ui3-HI-p4E" firstAttribute="top" secondItem="3QR-y9-RKp" secondAttribute="bottom" constant="8" id="RKC-hb-u3f"/>
-                            <constraint firstItem="Ui3-HI-p4E" firstAttribute="width" secondItem="2Gy-HA-EDc" secondAttribute="height" multiplier="14:15" id="YNQ-7G-9RS"/>
-                            <constraint firstItem="Ui3-HI-p4E" firstAttribute="leading" secondItem="2Gy-HA-EDc" secondAttribute="leading" constant="20" id="gmb-fV-1pe"/>
-                            <constraint firstItem="AHL-hE-P6D" firstAttribute="leading" secondItem="Ui3-HI-p4E" secondAttribute="leading" id="vWV-FS-qZx"/>
+                            <constraint firstItem="AHL-hE-P6D" firstAttribute="trailing" secondItem="2Gy-HA-EDc" secondAttribute="trailingMargin" id="Ske-iC-Djd"/>
+                            <constraint firstItem="AHL-hE-P6D" firstAttribute="top" secondItem="3QR-y9-RKp" secondAttribute="bottom" constant="44" id="sYP-AS-SbQ"/>
+                            <constraint firstItem="AHL-hE-P6D" firstAttribute="leading" secondItem="2Gy-HA-EDc" secondAttribute="leadingMargin" id="sty-h8-JwN"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="YNQ-7G-9RS"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Order Processing" id="Jm2-QS-Pbq"/>
                     <connections>
                         <outlet property="OrderList" destination="AHL-hE-P6D" id="4C0-qz-vTx"/>
-                        <outlet property="OrderSegement" destination="Ui3-HI-p4E" id="uie-8V-zkQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="loS-Ze-Rds" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -267,19 +245,20 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="main_order" id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="EYL-tt-Aew" kind="relationship" relationship="viewControllers" id="abo-2q-A9N"/>
                         <segue destination="h4R-Nf-Kht" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="eVy-Gp-9fh" kind="relationship" relationship="viewControllers" id="3dl-4X-d5b"/>
+                        <segue destination="yna-0q-s38" kind="relationship" relationship="viewControllers" id="Gq4-Xl-5HW"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2312" y="-392"/>
         </scene>
@@ -543,30 +522,24 @@
             </objects>
             <point key="canvasLocation" x="3480" y="-6"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="f2X-mR-Maj">
+        <!--View Controller-->
+        <scene sceneID="l9J-li-yqN">
             <objects>
-                <tableViewController id="eVy-Gp-9fh" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="j3c-qm-dzh">
+                <viewController id="yna-0q-s38" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iyp-Of-g3f"/>
+                        <viewControllerLayoutGuide type="bottom" id="7TK-jc-O7x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I4g-FV-yrJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oi5-ju-wx4">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oi5-ju-wx4" id="fdc-6I-gCn">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="0YX-jw-9cl"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eO7-16-AVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="Ek4-yc-q0Y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k17-93-PQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3392" y="822"/>
+            <point key="canvasLocation" x="3238" y="533"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ID2-cS-z5q">
